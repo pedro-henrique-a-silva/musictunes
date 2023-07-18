@@ -5,6 +5,8 @@ import { createUser } from '../../services/userAPI';
 
 import Loading from '../Loading/Loading';
 
+import './Login.css';
+
 function Login() {
   const [inputData, setInputData] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,14 +27,19 @@ function Login() {
   }
 
   return (
-    <form onSubmit={ handleSubmit }>
+    <form
+      onSubmit={ handleSubmit }
+      className="form-login"
+    >
       <input
         type="text"
+        className="form-input"
         data-testid="login-name-input"
         value={ inputData }
         onChange={ (event) => setInputData(event.target.value) }
       />
       <button
+        className="form-button"
         data-testid="login-submit-button"
         disabled={ (inputData.length < 3) }
       >
