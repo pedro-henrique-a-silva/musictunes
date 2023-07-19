@@ -31,6 +31,7 @@ function Login() {
       onSubmit={ handleSubmit }
       className="form-login"
     >
+      <h1>Login</h1>
       <input
         type="text"
         className="form-input"

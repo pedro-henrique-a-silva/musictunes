@@ -1,0 +1,22 @@
+.music-list {
+  padding: 10px;
+  width: fit-content;
+}
+
+.music-item {
+  align-items: center;
+  background-color: #0f0e17;
+  border-radius: 50px;
+  color: white;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.music-item span {
+  flex-basis: 200px;
+}
+
+.music-audio {
+  height: 30px;
+}

@@ -6,6 +6,7 @@ import Search from './pages/Search/Search';
 
 import { AlbumType } from './types';
 import Album from './pages/Album/Album';
+import Layout from './pages/Layout';
 
 function App() {
   const [albunsData, setAlbunsData] = useState<AlbumType[]>([]);
@@ -16,22 +17,20 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={ <Login /> } />
-      <Route
-        path="/search"
-        element={ <Search
-          albunsData={ albunsData }
-          updateAlbunsList={ updateAlbunsList }
-        /> }
-      />
-      <Route path="/album/:id" element={ <Album /> } />
-      {/* A rota /favorites irá renderizar a página de Favorites (bônus). */}
-      <Route path="/favorites" />
-      {/* A rota /profile irá renderizar a página de Profile (bônus). */}
-      <Route path="/profile" />
-      {/* A rota /profile/edit irá renderizar a página de ProfileEdit (bônus). */}
-      <Route path="/profile/edit" />
-      {/* Qualquer outra rota irá renderizar a página de NotFound. */}
+      <Route path="/" element={ <Layout /> }>
+        <Route index element={ <Login /> } />
+        <Route
+          path="/search"
+          element={ <Search
+            albunsData={ albunsData }
+            updateAlbunsList={ updateAlbunsList }
+          /> }
+        />
+        <Route path="/album/:id" element={ <Album /> } />
+        <Route path="/favorites" />
+        <Route path="/profile" />
+        <Route path="/profile/edit" />
+      </Route>
       <Route path="*" />
     </Routes>
   );
