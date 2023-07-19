@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Loading from '../Loading/Loading';
-import AlbumCard from '../AlbumCard/AlbumCard';
+import Loading from '../../components/Loading/Loading';
+import AlbumCard from '../../components/AlbumCard/AlbumCard';
 
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 
@@ -14,7 +14,8 @@ type SearchProp = {
 };
 
 function Search(props: SearchProp) {
-  const [searchInfo, setSearchData] = useState({ input: '', searchTerm: '' });
+  const [searchInput, setSearchInput] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [isFirstTime, setIsFirstTime] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,9 +23,10 @@ function Search(props: SearchProp) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSearchData({ ...searchInfo, input: '' });
+    setSearchTerm(searchInput);
+    setSearchInput('');
     setIsLoading(true);
-    const albuns = await searchAlbumsAPI(searchInfo.searchTerm);
+    const albuns = await searchAlbumsAPI(searchInput);
     updateAlbunsList(albuns);
     setIsLoading(false);
     setIsFirstTime(false);
@@ -32,7 +34,7 @@ function Search(props: SearchProp) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setSearchData({ input: value, searchTerm: value });
+    setSearchInput(value);
   };
 
   if (isLoading) {
@@ -51,13 +53,13 @@ function Search(props: SearchProp) {
           type="text"
           className="form-input search-input"
           data-testid="search-artist-input"
-          value={ searchInfo.input }
+          value={ searchInput }
           onChange={ handleChange }
         />
         <button
           className="form-button search-button"
           data-testid="search-artist-button"
-          disabled={ (searchInfo.input.length < 2) }
+          disabled={ (searchInput.length < 2) }
         >
           Pesquisar
 
@@ -67,7 +69,9 @@ function Search(props: SearchProp) {
       {
       (!isFirstTime && !isLoading) && (
         <>
-          <h2>{`Resultado de álbuns de: ${searchInfo.searchTerm}`}</h2>
+          <h2>
+            { `Resultado de álbuns de: ${searchTerm}`}
+          </h2>
           <AlbumCard albunsData={ albunsData } />
         </>)
       }

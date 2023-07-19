@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { createUser } from '../../services/userAPI';
 
-import Loading from '../Loading/Loading';
+import Loading from '../../components/Loading/Loading';
 
 import './Login.css';
 

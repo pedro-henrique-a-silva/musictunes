@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { useState } from 'react';
-import Login from './components/Login/Login';
-import Search from './components/Search/Search';
+import Login from './pages/Login/Login';
+import Search from './pages/Search/Search';
 
 import { AlbumType } from './types';
+import Album from './pages/Album/Album';
 
 function App() {
   const [albunsData, setAlbunsData] = useState<AlbumType[]>([]);
@@ -16,7 +17,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={ <Login /> } />
-      {/* A rota /search irá renderizar a página de Search. */}
       <Route
         path="/search"
         element={ <Search
@@ -24,8 +24,7 @@ function App() {
           updateAlbunsList={ updateAlbunsList }
         /> }
       />
-      {/* A rota /album/:id irá renderizar a página de Album. */}
-      <Route path="/album/:id" />
+      <Route path="/album/:id" element={ <Album /> } />
       {/* A rota /favorites irá renderizar a página de Favorites (bônus). */}
       <Route path="/favorites" />
       {/* A rota /profile irá renderizar a página de Profile (bônus). */}
