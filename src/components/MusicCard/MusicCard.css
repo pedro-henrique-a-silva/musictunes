@@ -6,7 +6,7 @@
 .music-item {
   align-items: center;
   background-color: #0f0e17;
-  border-radius: 50px;
+  border-radius: 20px;
   color: white;
   display: flex;
   margin-bottom: 10px;
@@ -19,4 +19,34 @@
 
 .music-audio {
   height: 30px;
+  margin-right: 10px;
+}
+
+.label-favorite {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.label-favorite input {
+  display: none;
+}
+
+.heart-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  height: 22px;
+  width: 25px;
+}
+
+.empty {
+  background-image: url('../../images/empty_heart.png');
+}
+
+.filled {
+  background-image: url('../../images/checked_heart.png');
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #94a1b2;
 }
