@@ -1,6 +1,6 @@
 .music-list {
   padding: 10px;
-  width: fit-content;
+  width: 60%;
 }
 
 .music-item {
@@ -11,24 +11,29 @@
   display: flex;
   margin-bottom: 10px;
   padding: 10px;
+  width: 80%;
 }
 
 .music-item span {
   flex-basis: 200px;
+  flex-grow: 1;
 }
 
 .music-audio {
+  flex-basis: 200px;
   height: 30px;
   margin-right: 10px;
 }
 
 .label-favorite {
   cursor: pointer;
+  flex-basis: 30px;
   padding: 5px;
+  position: relative;
 }
 
 .label-favorite input {
-  display: none;
+  opacity: 0;
 }
 
 .heart-icon {
@@ -36,6 +41,9 @@
   background-size: cover;
   display: inline-block;
   height: 22px;
+  left: 0;
+  position: absolute;
+  top: 0;
   width: 25px;
 }
 

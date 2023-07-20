@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SongType } from '../../types';
+
+import { addSong, removeSong, getFavoriteSongs } from '../../services/favoriteSongsAPI';
 
 import heartEmpty from '../../images/empty_heart.png';
 import heartFilled from '../../images/checked_heart.png';
@@ -13,15 +15,32 @@ type MusicCardProps = {
 function MusicCard(props: MusicCardProps) {
   const { musicList } = props;
 
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<SongType[]>([]);
 
-  const handleChange = (musicId: number) => {
-    if (favorites.includes(musicId)) {
-      setFavorites(favorites.filter((id) => id !== musicId));
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    music: SongType,
+  ) => {
+    const { checked } = event.target;
+
+    if (checked === true) {
+      addSong(music);
+      setFavorites([...favorites, music]);
     } else {
-      setFavorites([...favorites, musicId]);
+      removeSong(music);
+      setFavorites(favorites.filter((songData) => songData.trackId !== music.trackId));
     }
   };
+
+  useEffect(() => {
+    const getFavoritesFromStorage = async () => {
+      const favoritesData = await getFavoriteSongs();
+      if (favoritesData) {
+        setFavorites([...favoritesData]);
+      }
+    };
+    getFavoritesFromStorage();
+  }, []);
 
   return (
     <ul className="music-list">
@@ -46,19 +65,18 @@ function MusicCard(props: MusicCardProps) {
                 id={ `favorite-checkbox-${album.trackId}` }
                 className="favorite-checkbox"
                 type="checkbox"
-                checked={ favorites.includes(album.trackId) }
-                onChange={ () => handleChange(album.trackId) }
+                checked={ favorites
+                  .find((songData) => songData.trackId === album.trackId) !== undefined }
+                onChange={ (event) => handleChange(event, album) }
               />
               <img
                 className="heart-icon"
-                src={ favorites.includes(album.trackId)
+                src={ (favorites
+                  .find((songData) => songData.trackId === album.trackId) !== undefined)
                   ? heartFilled : heartEmpty }
                 alt="favorite"
               />
-              {/* <span
-                className={ `heart-icon ${favorites.includes(album.trackId)
-                  ? 'filled' : 'empty'}` }
-              /> */}
+
             </label>
           </li>
         );
