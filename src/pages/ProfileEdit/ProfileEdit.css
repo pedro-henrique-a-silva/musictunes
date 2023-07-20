@@ -1,0 +1,25 @@
+.profile-image {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.profile-input {
+  background-color: #242629;
+  border: 3px solid white;
+  border-color: #0f0e17;
+  border-radius: 8px;
+  color: #fffffe;
+  font-weight: 700;
+  margin: 5px;
+  outline: none;
+  padding: 20px;
+}
+
+.profile-button {
+  background-color: #7f5af0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  height: 50px;
+  padding: 9px;
+}

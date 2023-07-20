@@ -35,10 +35,13 @@ function Profile() {
           ? <img
               src={ user?.image }
               alt="profile"
-              data-testid="profile-image"
+              data-testid="profile-image-default profile-image"
               className="profile-image"
           />
-          : <FaUserCircle className="profile-image" data-testid="profile-image" />}
+          : <FaUserCircle
+              className="profile-image-default"
+              data-testid="profile-image"
+          />}
         <Link className="profile-edit-link" to="/profile/edit">Editar perfil</Link>
       </div>
       <div className="profile-data">

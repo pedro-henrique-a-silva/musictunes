@@ -7,6 +7,7 @@ import Album from './pages/Album/Album';
 import Layout from './pages/Layout';
 import Favorites from './pages/Favorites/Favorites';
 import Profile from './pages/Profile/Profile';
+import ProfileEdit from './pages/ProfileEdit/ProfileEdit';
 
 import { AlbumType, SongType } from './types';
 
@@ -48,7 +49,7 @@ function App() {
           /> }
         />
         <Route path="/profile" element={ <Profile /> } />
-        <Route path="/profile/edit" />
+        <Route path="/profile/edit" element={ <ProfileEdit /> } />
       </Route>
       <Route path="*" />
     </Routes>
