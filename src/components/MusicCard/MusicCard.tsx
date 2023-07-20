@@ -7,6 +7,7 @@ import heartEmpty from '../../images/empty_heart.png';
 import heartFilled from '../../images/checked_heart.png';
 
 import './MusicCard.css';
+import Loading from '../Loading/Loading';
 
 type MusicCardProps = {
   musicList: SongType[]
@@ -16,6 +17,7 @@ function MusicCard(props: MusicCardProps) {
   const { musicList } = props;
 
   const [favorites, setFavorites] = useState<SongType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -37,10 +39,17 @@ function MusicCard(props: MusicCardProps) {
       const favoritesData = await getFavoriteSongs();
       if (favoritesData) {
         setFavorites([...favoritesData]);
+        setIsLoading(false);
       }
     };
     getFavoritesFromStorage();
   }, []);
+
+  if (isLoading) {
+    return (
+      <Loading />
+    );
+  }
 
   return (
     <ul className="music-list">
