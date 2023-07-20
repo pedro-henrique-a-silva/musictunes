@@ -11,6 +11,14 @@ import Loading from '../../components/Loading/Loading';
 function Profile() {
   const [user, setUser] = useState<UserType>();
   const [isLoading, setIsLoading] = useState(true);
+  const [imageWorking, setImageWorking] = useState(true);
+
+  const verificarLinkDeImagem = () => {
+    const img = new Image();
+    img.onload = () => setImageWorking(true);
+    img.onerror = () => setImageWorking(false);
+    img.src = user?.image as string;
+  };
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -22,6 +30,8 @@ function Profile() {
     getUserInfo();
   }, []);
 
+  verificarLinkDeImagem();
+
   if (isLoading) {
     return (
       <Loading />
@@ -31,12 +41,13 @@ function Profile() {
   return (
     <div className="profile-container">
       <div className="profile-header">
-        {(user?.image)
+        {(user?.image && imageWorking)
           ? <img
               src={ user?.image }
+              onError={ () => setImageWorking(false) }
               alt="profile"
-              data-testid="profile-image-default profile-image"
-              className="profile-image"
+              data-testid="profile-image"
+              className="profile-image-default profile-image"
           />
           : <FaUserCircle
               className="profile-image-default"

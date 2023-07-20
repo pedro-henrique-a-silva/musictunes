@@ -89,13 +89,11 @@ function ProfileEdit() {
             ? <img
                 src={ user?.image }
                 alt="profile"
-                onLoad={ () => console.log('carregou perfil') }
                 onError={ () => setImageWorking(false) }
                 data-testid="profile-image"
                 className="profile-image-default profile-image"
             />
             : <FaUserCircle
-                onLoad={ () => console.log('carregou default') }
                 className="profile-image-default"
                 data-testid="profile-image"
             />}
