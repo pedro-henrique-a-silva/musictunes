@@ -9,7 +9,13 @@ import { AlbumType, SongType } from '../../types';
 
 import './Album.css';
 
-function Album() {
+type AlbumProps = {
+  favorites: SongType[],
+  updateFavorites: (songData: SongType[]) => void
+};
+
+function Album(props: AlbumProps) {
+  const { favorites, updateFavorites } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [albumData, setAlbumData] = useState<[AlbumType, ...SongType[]]>();
 
@@ -17,7 +23,6 @@ function Album() {
 
   useEffect(() => {
     const getAlbumData = async () => {
-      // console.log(id);
       const albumInformation = await getMusics(id as string);
       setIsLoading(false);
       setAlbumData([...albumInformation]);
@@ -58,6 +63,8 @@ function Album() {
               </p>
             </div>
             <MusicCard
+              favorites={ favorites }
+              updateFavorites={ updateFavorites }
               musicList={ albumData
                 .filter((album, idArray) => idArray !== 0) as SongType[] }
             />

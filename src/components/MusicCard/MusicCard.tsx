@@ -10,13 +10,15 @@ import './MusicCard.css';
 import Loading from '../Loading/Loading';
 
 type MusicCardProps = {
-  musicList: SongType[]
+  musicList: SongType[],
+  favorites: SongType[],
+  updateFavorites: (songData: SongType[]) => void
+
 };
 
 function MusicCard(props: MusicCardProps) {
-  const { musicList } = props;
+  const { musicList, favorites, updateFavorites } = props;
 
-  const [favorites, setFavorites] = useState<SongType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleChange = (
@@ -27,10 +29,10 @@ function MusicCard(props: MusicCardProps) {
 
     if (checked === true) {
       addSong(music);
-      setFavorites([...favorites, music]);
+      updateFavorites([...favorites, music]);
     } else {
       removeSong(music);
-      setFavorites(favorites.filter((songData) => songData.trackId !== music.trackId));
+      updateFavorites(favorites.filter((songData) => songData.trackId !== music.trackId));
     }
   };
 
@@ -38,7 +40,7 @@ function MusicCard(props: MusicCardProps) {
     const getFavoritesFromStorage = async () => {
       const favoritesData = await getFavoriteSongs();
       if (favoritesData) {
-        setFavorites([...favoritesData]);
+        updateFavorites([...favoritesData]);
         setIsLoading(false);
       }
     };
