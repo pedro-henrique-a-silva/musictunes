@@ -1,0 +1,35 @@
+.profile-container {
+  background-color: #0f0e17;
+  border-radius: 20px;
+  margin: auto;
+  padding: 30px;
+  width: 400px;
+}
+
+.profile-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  font-size: 100px;
+}
+
+.profile-edit-link {
+  background: #7f5af0;
+  border-radius: 10px;
+  color: white;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+.profile-data {
+  margin-bottom: 30px;
+}
+
+.profile-data p {
+  margin-left: 5px;
+  margin-top: 5px;
+}

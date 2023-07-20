@@ -35,11 +35,14 @@ function Favorites(props: FavoritesProps) {
   }
 
   return (
-    <MusicCard
-      favorites={ favorites }
-      updateFavorites={ updateFavorites }
-      musicList={ favorites }
-    />
+    <>
+      <h2>Favoritos:</h2>
+      <MusicCard
+        favorites={ favorites }
+        updateFavorites={ updateFavorites }
+        musicList={ favorites }
+      />
+    </>
   );
 }
 

@@ -3,11 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Login from './pages/Login/Login';
 import Search from './pages/Search/Search';
-
-import { AlbumType, SongType } from './types';
 import Album from './pages/Album/Album';
 import Layout from './pages/Layout';
 import Favorites from './pages/Favorites/Favorites';
+import Profile from './pages/Profile/Profile';
+
+import { AlbumType, SongType } from './types';
 
 function App() {
   const [albunsData, setAlbunsData] = useState<AlbumType[]>([]);
@@ -46,7 +47,7 @@ function App() {
             updateFavorites={ updateFavorites }
           /> }
         />
-        <Route path="/profile" />
+        <Route path="/profile" element={ <Profile /> } />
         <Route path="/profile/edit" />
       </Route>
       <Route path="*" />
