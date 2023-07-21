@@ -1,6 +1,7 @@
 .profile-container {
   background-color: #0f0e17;
   border-radius: 20px;
+  box-shadow: 0 4px 10px hsla(255, 83%, 65%, 0.5);
   margin: auto;
   padding: 30px;
   width: 400px;

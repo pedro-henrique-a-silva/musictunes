@@ -27,27 +27,30 @@ function Login() {
   }
 
   return (
-    <form
-      onSubmit={ handleSubmit }
-      className="form-login"
-    >
-      <h1>Login</h1>
-      <input
-        type="text"
-        className="form-input"
-        data-testid="login-name-input"
-        value={ inputData }
-        onChange={ (event) => setInputData(event.target.value) }
-      />
-      <button
-        className="form-button"
-        data-testid="login-submit-button"
-        disabled={ (inputData.length < 3) }
-      >
-        Entrar
+    <div className="login-container">
 
-      </button>
-    </form>
+      <form
+        onSubmit={ handleSubmit }
+        className="form-login"
+      >
+        <h1>Login</h1>
+        <input
+          type="text"
+          className="form-input"
+          data-testid="login-name-input"
+          value={ inputData }
+          onChange={ (event) => setInputData(event.target.value) }
+        />
+        <button
+          className="form-button"
+          data-testid="login-submit-button"
+          disabled={ (inputData.length < 3) }
+        >
+          Entrar
+
+        </button>
+      </form>
+    </div>
   );
 }
 

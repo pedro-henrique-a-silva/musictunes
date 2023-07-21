@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { getUser } from '../../services/userAPI';
 import { UserType } from '../../types';
@@ -8,56 +8,57 @@ import './Header.css';
 
 function Header() {
   const [userData, setUserData] = useState<UserType>();
-
-  const { pathname } = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getUserName = async () => {
       const userResponse = await getUser();
-      setUserData({ ...userResponse });
+      setUserData(userResponse);
+      setIsLoading(false);
     };
     getUserName();
   }, []);
-  if (pathname !== '/') {
-    return (
-      <header data-testid="header-component" className="header-container">
-        <h1 className="header-logo">LOGO</h1>
-        <nav className="header-nav">
+
+  return (
+    <header data-testid="header-component" className="header-container">
+      <h1 className="header-logo">LOGO</h1>
+      <nav className="header-nav">
+        <Link to="/" className="header-user-link">
           <span
             className="header-username"
             data-testid="header-user-name"
           >
-            {(userData) ? userData.name : 'Carregando...'}
+            {(!isLoading) ? userData?.name : 'Carregando...'}
           </span>
-          <NavLink
-            className="header-link"
-            to="/search"
-            data-testid="link-to-search"
-          >
-            Search
+        </Link>
+        <NavLink
+          className="header-link"
+          to="/search"
+          data-testid="link-to-search"
+        >
+          Search
 
-          </NavLink>
-          <NavLink
-            className="header-link"
-            to="/favorites"
-            data-testid="link-to-favorites"
-          >
-            Favorites
+        </NavLink>
+        <NavLink
+          className="header-link"
+          to="/favorites"
+          data-testid="link-to-favorites"
+        >
+          Favorites
 
-          </NavLink>
-          <NavLink
-            className="header-link"
-            to="/profile"
-            data-testid="link-to-profile"
-          >
-            Profile
+        </NavLink>
+        <NavLink
+          className="header-link"
+          to="/profile"
+          data-testid="link-to-profile"
+        >
+          Profile
 
-          </NavLink>
+        </NavLink>
 
-        </nav>
-      </header>
-    );
-  }
+      </nav>
+    </header>
+  );
 }
 
 export default Header;
