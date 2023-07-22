@@ -26,7 +26,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={ <Layout /> }>
-        <Route index element={ <Login /> } />
+        <Route
+          index
+          element={ <Login /> }
+        />
         <Route
           path="/search"
           element={ <Search
@@ -48,8 +51,14 @@ function App() {
             updateFavorites={ updateFavorites }
           /> }
         />
-        <Route path="/profile" element={ <Profile /> } />
-        <Route path="/profile/edit" element={ <ProfileEdit /> } />
+        <Route
+          path="/profile"
+          element={ <Profile /> }
+        />
+        <Route
+          path="/profile/edit"
+          element={ <ProfileEdit /> }
+        />
       </Route>
       <Route path="*" />
     </Routes>

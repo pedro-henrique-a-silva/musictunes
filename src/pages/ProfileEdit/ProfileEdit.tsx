@@ -58,7 +58,7 @@ function ProfileEdit() {
     event.preventDefault();
     if (verifyInputs()) {
       updateUser(user);
-      navigate('/profile');
+      navigate('/profile', { state: user });
     }
   };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { getUser } from '../../services/userAPI';
@@ -13,6 +13,8 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [imageWorking, setImageWorking] = useState(true);
 
+  const { state } = useLocation();
+
   const verificarLinkDeImagem = () => {
     const img = new Image();
     img.onload = () => setImageWorking(true);
@@ -23,8 +25,14 @@ function Profile() {
   useEffect(() => {
     const getUserInfo = async () => {
       const userInfo = await getUser();
-      console.log(userInfo);
-      setUser(userInfo);
+
+      if (state) {
+        console.log(state);
+        setUser(state);
+      } else {
+        setUser(userInfo);
+      }
+
       setIsLoading(false);
     };
     getUserInfo();

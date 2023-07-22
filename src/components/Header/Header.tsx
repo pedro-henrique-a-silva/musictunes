@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { getUser } from '../../services/userAPI';
 import { UserType } from '../../types';
 
+import headPhonesLogo from '../../images/headphones.png';
 import './Header.css';
 
 function Header() {
@@ -21,7 +22,7 @@ function Header() {
 
   return (
     <header data-testid="header-component" className="header-container">
-      <h1 className="header-logo">LOGO</h1>
+      <img src={ headPhonesLogo } alt="logotipo" className="header-logo" />
       <nav className="header-nav">
         <Link to="/" className="header-user-link">
           <span

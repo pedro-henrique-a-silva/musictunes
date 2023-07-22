@@ -1,6 +1,8 @@
+import './Loading.css';
+
 function Loading() {
   return (
-    <div>Carregando...</div>
+    <div className="loading">Carregando...</div>
   );
 }
 

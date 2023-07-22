@@ -18,8 +18,10 @@
 .profile-button {
   background-color: #7f5af0;
   border-radius: 10px;
+  color: #fffffe;
   cursor: pointer;
   font-weight: 700;
   height: 50px;
   padding: 9px;
+  width: 100px;
 }
