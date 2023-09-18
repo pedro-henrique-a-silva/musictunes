@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este repositório está em construção. Aqui você encontrará [breve resumo do projeto ou curso] e seus componentes.
+Neste projeto, desenvolvi uma aplicação de pesquisa de músicas que permite aos usuários buscar músicas por bandas e cantores, essa busca e feita na aplicação por meio de requisições a APIs (a api usada é a do Itunes). Além disso, os usuários têm a capacidade de adicionar músicas aos seus favoritos e realizar edições em seus perfis.
 
 ## Conteúdo
 
